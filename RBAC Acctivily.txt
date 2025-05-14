@@ -1,0 +1,79 @@
+ Hands-On Lab: Role-Based Access Control (RBAC) in Azure Data Factory
+🎯 Goal:
+You’ll learn how to apply RBAC in Azure Data Factory so that only authorized users can access or perform actions like creating pipelines, monitoring activities, or accessing linked services.
+=======================================================================================
+🛠️ Prerequisites:
+Azure Subscription
+
+Azure Data Factory (already created)
+
+Azure Active Directory User (or you can create one dummy user for this test)
+
+Basic knowledge of ADF UI
+=======================================================================================
+✅ Steps Overview:
+Create a test user in Azure AD (if you don’t have one)
+
+Assign RBAC role to the user for ADF
+
+Login with that user and validate permissions
+
+Test access with different roles (Reader, Contributor, Data Factory Contributor, etc.)
+=======================================================================================
+
+🔄 Step-by-step Instructions
+🔹 Step 1: Create a Test User in Azure AD
+If you already have a second user to test with, skip this step.
+
+Go to Azure Portal → search Azure Active Directory
+
+Go to Users → Click + New user
+
+Fill basic info (Name, username) → Create user
+
+Note down the username and temporary password
+=======================================================================================
+🔹 Step 2: Assign RBAC Role to the User on ADF
+Go to your Azure Data Factory instance
+
+On the left menu → Click Access Control (IAM)
+
+Click + Add → Add role assignment
+
+Choose Role: Select one of the following based on the scenario:
+
+🔹 Reader: Can only view ADF, not edit
+
+🔹 Data Factory Contributor: Can create and manage ADF pipelines
+
+🔹 Contributor: Can manage everything except access control
+
+In Assign access to: Select User, group, or service principal
+
+Search and select the user you created earlier
+
+Click Review + assign
+
+✅ Done! The user now has a role on ADF.
+=======================================================================================
+🔹 Step 3: Login with Test User and Validate
+Open a new browser/incognito window
+
+Go to https://portal.azure.com and log in with the test user credentials
+
+Reset password when prompted
+
+Navigate to Data Factory → Open the same instance
+
+🔍 Now test what the user can or cannot do:
+
+If Reader: Try editing pipeline → You’ll get access denied
+
+If Contributor or ADF Contributor: Try creating new pipeline, dataset, etc.
+=======================================================================================
+🔄 Step 4: Change Roles and Re-Test (Optional)
+Go back to the original admin account and:
+
+Change the user’s role (e.g., downgrade from Contributor to Reader)
+
+Log back in with the test user and validate limited access
